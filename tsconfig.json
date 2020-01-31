@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngrx-facade-mock": [
+        "dist/ngrx-facade-mock"
+      ],
+      "ngrx-facade-mock/*": [
+        "dist/ngrx-facade-mock/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

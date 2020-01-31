@@ -1,6 +1,14 @@
-import { ModuleWithProviders, NgModule, Provider, Type } from '@angular/core';
+import { DebugElement, ModuleWithProviders, NgModule, Provider, Type } from '@angular/core';
 import { MockStoreConfig, provideMockStore } from '@ngrx/store/testing';
 import { BehaviorSubject, Observable } from 'rxjs';
+
+export interface DebugHTMLElement<T extends HTMLElement> extends DebugElement {
+  nativeElement: T;
+}
+
+export interface DebugComponentElement<T extends Type<any>> extends DebugElement {
+  componentInstance: T;
+}
 
 export function FacadeMock<TBase extends Type<any>>(base: TBase) {
   return class extends base {
@@ -35,7 +43,7 @@ export interface FacadeMockModuleConfig<TStoreConfig> {
 
 @NgModule()
 export class FacadeMockModule {
-  public static withMockStores<T>({ mockStoreConfig, facadeMocks }:
+  public static withMockStore<T>({ mockStoreConfig, facadeMocks }:
                                     FacadeMockModuleConfig<T>): ModuleWithProviders<FacadeMockModule> {
     return {
       ngModule: FacadeMockModule,

@@ -1,0 +1,20 @@
+<ng-container *ngIf="loading$ | async; else showContent">
+  <p>Application is loading...</p>
+</ng-container>
+<ng-template #showContent>
+  <h1>Counter</h1>
+  <p>Counter value: {{counter$ | async}}</p>
+  <div>
+    <button type="button" (click)="onIncrement()">Increment</button>
+    <button type="button" (click)="onDecrement()">Decrement</button>
+  </div>
+  <br>
+  <hr>
+  <br>
+  <div>
+    <form (submit)="setCounter(counterInput.value)" [formGroup]="counterFormGroup">
+      <input type="number" placeholder="set counter" value="0" #counterInput formControlName="counterInput">
+      <button type="submit">Set counter</button>
+    </form>
+  </div>
+</ng-template>

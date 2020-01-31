@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FacadeMock } from '../../../../ngrx-facade-mock/src/lib/ngrx-facade-mock.module';
+import { FacadeMock } from '@nemocontra/ngrx-facade-mock';
 import { AppFacade } from './app.facade';
 
 @Injectable()

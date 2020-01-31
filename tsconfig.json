@@ -19,11 +19,8 @@
       "dom"
     ],
     "paths": {
-      "ngrx-facade-mock": [
-        "dist/ngrx-facade-mock"
-      ],
-      "ngrx-facade-mock/*": [
-        "dist/ngrx-facade-mock/*"
+      "@nemocontra/ngrx-facade-mock": [
+        "projects/ngrx-facade-mock/src/public-api.ts"
       ]
     }
   },

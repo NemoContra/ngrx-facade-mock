@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { DebugHTMLElement, FacadeMockModule } from '../../../ngrx-facade-mock/src/lib/ngrx-facade-mock.module';
+import { DebugHTMLElement, FacadeMockModule } from '@nemocontra/ngrx-facade-mock';
 import { AppState, initialAppState } from './+state/app.reducers';
 import { AppFacade } from './+state/app.facade';
 import { AppFacadeMock } from './+state/app.facade-mock.spec';

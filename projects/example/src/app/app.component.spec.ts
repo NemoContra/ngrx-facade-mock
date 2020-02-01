@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { HTMLDebugElement, FacadeMockModule } from '@nemocontra/ngrx-facade-mock';
+import { FacadeMockModule, getAllByCss, getByCss } from '@nemocontra/ngrx-facade-mock';
 import { AppState, initialAppState } from './+state/app.reducers';
 import { AppFacade } from './+state/app.facade';
 import { AppFacadeMock } from './+state/app.facade-mock.spec';
-import { By } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
@@ -49,54 +48,38 @@ describe('AppComponent', () => {
   });
 
   it('should show the initial value of 0', () => {
-    const h1Element: HTMLDebugElement<HTMLHeadElement> = fixture.debugElement.query(By.css('h1'));
-    expect(h1Element.nativeElement.textContent).toEqual('Counter');
-
-    const pElement: HTMLDebugElement<HTMLParagraphElement> = fixture.debugElement.query(By.css('p'));
-    expect(pElement.nativeElement.textContent).toEqual('Counter value: 0');
+    expect(getByCss(fixture, 'h1').nativeElement.textContent).toEqual('Counter');
+    expect(getByCss(fixture, 'p').nativeElement.textContent).toEqual('Counter value: 0');
   });
 
   it('should show the correct counter value', () => {
     appFacadeMock.mockCounter$$.next(10);
     fixture.detectChanges();
-
-    const pElement: HTMLDebugElement<HTMLParagraphElement> = fixture.debugElement.query(By.css('p'));
-    expect(pElement.nativeElement.textContent).toEqual('Counter value: 10');
+    expect(getByCss(fixture, 'p').nativeElement.textContent).toEqual('Counter value: 10');
 
     appFacadeMock.mockCounter$$.next(99);
     fixture.detectChanges();
-
-    expect(pElement.nativeElement.textContent).toEqual('Counter value: 99');
+    expect(getByCss(fixture, 'p').nativeElement.textContent).toEqual('Counter value: 99');
 
     appFacadeMock.mockCounter$$.next(-42);
     fixture.detectChanges();
-
-    expect(pElement.nativeElement.textContent).toEqual('Counter value: -42');
+    expect(getByCss(fixture, 'p').nativeElement.textContent).toEqual('Counter value: -42');
   });
 
   it('increment the counter', () => {
-    const incrementButton: HTMLDebugElement<HTMLButtonElement> = fixture.debugElement.queryAll(By.css('button'))[0];
-
-    incrementButton.nativeElement.click();
-
+    getAllByCss(fixture, 'button')[0].nativeElement.click();
     expect(appFacadeMock.increment).toHaveBeenCalledTimes(1);
   });
 
   it('decrement the counter', () => {
-    const decrementButton: HTMLDebugElement<HTMLButtonElement> = fixture.debugElement.queryAll(By.css('button'))[1];
-
-    decrementButton.nativeElement.click();
-
+    getAllByCss(fixture, 'button')[1].nativeElement.click();
     expect(appFacadeMock.decrement).toHaveBeenCalledTimes(1);
   });
 
   it('set the counter', () => {
-    const setCounterInput: HTMLDebugElement<HTMLInputElement> = fixture.debugElement.query(By.css('input'));
-    const setCounterButton: HTMLDebugElement<HTMLButtonElement> = fixture.debugElement.queryAll(By.css('button'))[2];
-
-    setCounterInput.nativeElement.value = '20';
-    setCounterInput.nativeElement.dispatchEvent(new Event('input'));
-    setCounterButton.nativeElement.click();
+    getByCss(fixture, 'input').nativeElement.value = '20';
+    getAllByCss(fixture, 'button')[2].nativeElement.dispatchEvent(new Event('input'));
+    getAllByCss(fixture, 'button')[2].nativeElement.click();
 
     expect(appFacadeMock.setCounter).toHaveBeenCalledTimes(1);
     expect(appFacadeMock.setCounter).toHaveBeenCalledWith(20);

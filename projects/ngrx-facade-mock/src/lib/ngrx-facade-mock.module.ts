@@ -1,14 +1,6 @@
-import { DebugElement, ModuleWithProviders, NgModule, Provider, Type } from '@angular/core';
+import { ModuleWithProviders, NgModule, Provider, Type } from '@angular/core';
 import { MockStoreConfig, provideMockStore } from '@ngrx/store/testing';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-export interface HTMLDebugElement<T extends HTMLElement> extends DebugElement {
-  nativeElement: T;
-}
-
-export interface ComponentDebugElement<T extends Type<any>> extends DebugElement {
-  componentInstance: T;
-}
 
 export function FacadeMock<TBase extends Type<any>>(base: TBase) {
   return class extends base {

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { DebugHTMLElement, FacadeMockModule } from '@nemocontra/ngrx-facade-mock';
+import { HTMLDebugElement, FacadeMockModule } from '@nemocontra/ngrx-facade-mock';
 import { AppState, initialAppState } from './+state/app.reducers';
 import { AppFacade } from './+state/app.facade';
 import { AppFacadeMock } from './+state/app.facade-mock.spec';
@@ -49,10 +49,10 @@ describe('AppComponent', () => {
   });
 
   it('should show the initial value of 0', () => {
-    const h1Element: DebugHTMLElement<HTMLHeadElement> = fixture.debugElement.query(By.css('h1'));
+    const h1Element: HTMLDebugElement<HTMLHeadElement> = fixture.debugElement.query(By.css('h1'));
     expect(h1Element.nativeElement.textContent).toEqual('Counter');
 
-    const pElement: DebugHTMLElement<HTMLParagraphElement> = fixture.debugElement.query(By.css('p'));
+    const pElement: HTMLDebugElement<HTMLParagraphElement> = fixture.debugElement.query(By.css('p'));
     expect(pElement.nativeElement.textContent).toEqual('Counter value: 0');
   });
 
@@ -60,7 +60,7 @@ describe('AppComponent', () => {
     appFacadeMock.mockCounter$$.next(10);
     fixture.detectChanges();
 
-    const pElement: DebugHTMLElement<HTMLParagraphElement> = fixture.debugElement.query(By.css('p'));
+    const pElement: HTMLDebugElement<HTMLParagraphElement> = fixture.debugElement.query(By.css('p'));
     expect(pElement.nativeElement.textContent).toEqual('Counter value: 10');
 
     appFacadeMock.mockCounter$$.next(99);
@@ -75,7 +75,7 @@ describe('AppComponent', () => {
   });
 
   it('increment the counter', () => {
-    const incrementButton: DebugHTMLElement<HTMLButtonElement> = fixture.debugElement.queryAll(By.css('button'))[0];
+    const incrementButton: HTMLDebugElement<HTMLButtonElement> = fixture.debugElement.queryAll(By.css('button'))[0];
 
     incrementButton.nativeElement.click();
 
@@ -83,7 +83,7 @@ describe('AppComponent', () => {
   });
 
   it('decrement the counter', () => {
-    const decrementButton: DebugHTMLElement<HTMLButtonElement> = fixture.debugElement.queryAll(By.css('button'))[1];
+    const decrementButton: HTMLDebugElement<HTMLButtonElement> = fixture.debugElement.queryAll(By.css('button'))[1];
 
     decrementButton.nativeElement.click();
 
@@ -91,8 +91,8 @@ describe('AppComponent', () => {
   });
 
   it('set the counter', () => {
-    const setCounterInput: DebugHTMLElement<HTMLInputElement> = fixture.debugElement.query(By.css('input'));
-    const setCounterButton: DebugHTMLElement<HTMLButtonElement> = fixture.debugElement.queryAll(By.css('button'))[2];
+    const setCounterInput: HTMLDebugElement<HTMLInputElement> = fixture.debugElement.query(By.css('input'));
+    const setCounterButton: HTMLDebugElement<HTMLButtonElement> = fixture.debugElement.queryAll(By.css('button'))[2];
 
     setCounterInput.nativeElement.value = '20';
     setCounterInput.nativeElement.dispatchEvent(new Event('input'));

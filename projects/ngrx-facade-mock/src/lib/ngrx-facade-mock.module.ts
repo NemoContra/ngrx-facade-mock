@@ -2,11 +2,11 @@ import { DebugElement, ModuleWithProviders, NgModule, Provider, Type } from '@an
 import { MockStoreConfig, provideMockStore } from '@ngrx/store/testing';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export interface DebugHTMLElement<T extends HTMLElement> extends DebugElement {
+export interface HTMLDebugElement<T extends HTMLElement> extends DebugElement {
   nativeElement: T;
 }
 
-export interface DebugComponentElement<T extends Type<any>> extends DebugElement {
+export interface ComponentDebugElement<T extends Type<any>> extends DebugElement {
   componentInstance: T;
 }
 
